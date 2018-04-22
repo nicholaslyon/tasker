@@ -43,9 +43,9 @@ class Tasker extends Component {
           />
         </form>
         {!!tasks.length &&
-          <List
-            tasks={tasks}
-          />
+        <List
+          tasks={tasks}
+        />
         }
       </div>
     );
