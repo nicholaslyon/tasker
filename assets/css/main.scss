@@ -1,0 +1,72 @@
+
+// vars
+:root {
+  // dimensions
+  --spacing: 10px;
+  --max-width: 700px;
+
+  // colors
+  --base-color: #333;
+
+  // typography
+  --font-family: 'Roboto', sans-serif;
+  --font-size: 22px;
+  --font-weight: 300;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  color: var(--base-color);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+}
+
+input {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  padding: var(--spacing);
+  border: 1px solid var(--base-color);
+}
+
+.tasker {
+
+  & {
+    width: 100%;
+    max-width: var(--max-width);
+    padding: var(--spacing);
+    border: 1px solid var(--base-color);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__input {
+    width: 100%;
+  }
+}
+
+.task-list {
+
+  & {
+    margin-top: var(--spacing);
+    margin-bottom: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__task {
+    padding: var(--spacing);
+    border: 1px solid var(--base-color);
+
+    & + & {
+      border-top: none;
+    }
+  }
+}

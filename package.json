@@ -1,0 +1,28 @@
+{
+  "name": "tasker",
+  "version": "1.0.0",
+  "description": "personal task master app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicholaslyon/tasker.git"
+  },
+  "keywords": [],
+  "author": "Nicholas Lyon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nicholaslyon/tasker/issues"
+  },
+  "homepage": "https://github.com/nicholaslyon/tasker#readme",
+  "devDependencies": {
+    "node-sass": "^4.8.3"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  }
+}
