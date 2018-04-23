@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+
 import List from "./components/List";
+
+import { generateUUID } from './utils';
 
 class Tasker extends Component {
   constructor(props) {
@@ -11,6 +14,7 @@ class Tasker extends Component {
 
     // function binding
     this.onTaskAdd = this.onTaskAdd.bind(this);
+    this.onAddClicked = this.onAddClicked.bind(this);
 
     // start state
     this.state = {
@@ -18,16 +22,41 @@ class Tasker extends Component {
     }
   }
 
+  onAddClicked() {
+    console.log('clicked');
+  }
+
   onTaskAdd(evt) {
     // stop page refresh
     evt.preventDefault();
 
+    // process input
+    const newTask = this.processNewTaskString(this.input.value.trim());
+
     // set new state
-    this.setState({ tasks: [this.input.value, ...this.state.tasks]});
+    this.setState({ tasks: [newTask, ...this.state.tasks]});
 
     // clear value
     // TODO - this part of state?
     this.input.value = '';
+  }
+
+  processNewTaskString(taskString) {
+    // only single add
+    if (taskString.indexOf('/') === -1) return { name: taskString, id: generateUUID() };
+
+    // new section add
+    const taskParts = taskString.split('/');
+    return {
+      name: taskParts[0].trim(),
+      id: generateUUID(),
+      subTasks: taskParts.splice(1).map((subTaskString) => {
+        return {
+          name: subTaskString.trim(),
+          id: generateUUID(),
+        }
+      }),
+    };
   }
 
   render() {
@@ -45,6 +74,7 @@ class Tasker extends Component {
         {!!tasks.length &&
         <List
           tasks={tasks}
+          onAddClicked={this.onAddClicked}
         />
         }
       </div>

@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Tasker from './Tasker';
-import registerServiceWorker from './registerServiceWorker';
+import Tasker from './javascript/Tasker';
+import registerServiceWorker from './javascript/service-workers/registerServiceWorker';
 
-import './index.css';
+import './css/index.css';
 
 ReactDOM.render(
   <Tasker />,

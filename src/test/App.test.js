@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './Tasker';
+import App from '../javascript/Tasker';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
