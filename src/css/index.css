@@ -4,6 +4,8 @@
   /* dimensions */
   --spacing: 10px;
   --max-width: 700px;
+  --min-height-line: calc(var(--spacing) * 5);
+  --button-dimension: calc(var(--spacing) * 3);
 
   /* colors */
   --base-color: #333;
@@ -11,11 +13,8 @@
   /* typography */
   --font-family: 'Roboto', sans-serif;
   --font-size: 22px;
+  --line-height: var(--button-dimension);
   --font-weight: 300;
-}
-
-* {
-  box-sizing: border-box;
 }
 
 body,
@@ -26,6 +25,18 @@ html {
   font-family: var(--font-family);
   font-size: var(--font-size);
   font-weight: var(--font-weight);
+  line-height: var(--line-height);
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+:focus {
+  outline: limegreen solid 3px;
 }
 
 input {
@@ -49,18 +60,70 @@ input {
   width: 100%;
 }
 
-.task-list {
+.tasker__list {
   margin-top: var(--spacing);
   margin-bottom: 0;
   padding: 0;
   list-style: none;
 }
 
-.task-list__task {
+.tasker__task-wrapper {
   padding: var(--spacing);
   border: 1px solid var(--base-color);
+  min-height: var(--min-height-line);
+  font-weight: bold;
 }
 
-.task-list__task + .task-list__task {
+.tasker__task-wrapper .tasker__task-wrapper {
+  font-weight: var(--font-weight);
+}
+
+.tasker__task-wrapper + .tasker__task-wrapper {
   border-top: none;
+}
+
+.tasker__task {
+  display: flex;
+}
+
+.tasker__checkbox {
+  background: none;
+  border: 1px solid var(--base-color);
+  margin: 0 var(--spacing) 0 0;
+  width: var(--button-dimension);
+  height: var(--button-dimension);
+  flex-shrink: 0;
+  appearance: none;
+  padding: 0;
+  position: relative;
+}
+
+.tasker__checkbox:checked:after {
+  content: '';
+  display: block;
+  background: var(--base-color);
+  width: calc(var(--button-dimension) - var(--spacing));
+  height: calc(var(--button-dimension) - var(--spacing));
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tasker__name {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tasker__add {
+  border: 1px solid var(--base-color);
+  background: none;
+  font-size: var(--font-size);
+  align-self: flex-start;
+  flex-shrink: 0;
+  margin-left: var(--spacing);
+  padding: 0;
+  width: var(--button-dimension);
+  height: var(--button-dimension);
 }

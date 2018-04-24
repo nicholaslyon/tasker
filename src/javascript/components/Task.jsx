@@ -6,18 +6,41 @@ import Add from "./Add";
 class Task extends Component {
   constructor(props) {
     super(props);
+
+    this.onChecked = this.onChecked.bind(this);
+  }
+
+  onChecked() {
+    const { onTaskChecked, id } = this.props;
+    onTaskChecked(id);
   }
 
   render() {
-    const { name, subTasks, onAddClicked } = this.props;
+    const { name, subTasks, onAddClicked, onTaskChecked, isDone, parentChecked } = this.props;
 
     return (
-      <li className={'task-list__task'}>
-        <div className="task-list__name">
-          { name }
-          {onAddClicked && <Add onClick={onAddClicked}/>}
+      <li className="tasker__task-wrapper">
+        <div className="tasker__task">
+          {!parentChecked &&
+            <input
+              className="tasker__checkbox"
+              type="checkbox"
+              checked={isDone}
+              onChange={this.onChecked}/>
+          }
+          <div className="tasker__name">
+            { name }
+            {onAddClicked &&
+              <Add onClick={onAddClicked}/>
+            }
+          </div>
         </div>
-        {(subTasks && !!subTasks.length) && <List tasks={subTasks} />}
+        {(subTasks && !!subTasks.length) &&
+          <List
+            tasks={subTasks}
+            onTaskChecked={onTaskChecked}
+            parentChecked={isDone} />
+        }
       </li>
     );
   }
@@ -25,8 +48,11 @@ class Task extends Component {
 
 Task.propTypes = {
   name: PropTypes.string.isRequired,
+  isDone: PropTypes.bool.isRequired,
+  onTaskChecked: PropTypes.func.isRequired,
   subTasks: PropTypes.array,
   onAddClicked: PropTypes.func,
+  parentChecked: PropTypes.bool,
 };
 
 export default Task;

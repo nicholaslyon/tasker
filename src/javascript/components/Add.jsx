@@ -10,7 +10,10 @@ class Add extends Component {
     const { onClick } = this.props;
 
     return (
-      <button onClick={onClick}>+</button>
+      <button
+        className="tasker__add"
+        onClick={onClick}
+      >+</button>
     );
   }
 }

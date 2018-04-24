@@ -9,12 +9,17 @@ class List extends Component {
   }
 
   render() {
-    const { tasks, onAddClicked } = this.props;
+    const { tasks, onAddClicked, onTaskChecked, parentChecked } = this.props;
 
     return (
-      <ul className={'task-list'}>
+      <ul className="tasker__list">
         {tasks.map((task) => {
-          return <Task {...task} key={task.id} onAddClicked={onAddClicked} />
+          return <Task
+            {...task}
+            key={task.id}
+            onAddClicked={onAddClicked}
+            onTaskChecked={onTaskChecked}
+            parentChecked={parentChecked} />
         })}
       </ul>
     );
@@ -23,7 +28,9 @@ class List extends Component {
 
 List.propTypes = {
   tasks: PropTypes.array.isRequired,
+  onTaskChecked: PropTypes.func.isRequired,
   onAddClicked: PropTypes.func,
+  parentChecked: PropTypes.bool,
 };
 
 export default List;
